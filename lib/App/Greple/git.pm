@@ -1,19 +1,14 @@
 package App::Greple::git;
 
-use 5.014;
-use warnings;
-
 our $VERSION = "0.01";
 
 1;
-
-__END__
 
 =encoding utf-8
 
 =head1 NAME
 
-git - Greple module for git
+git - Greple git module
 
 =head1 SYNOPSIS
 
@@ -22,6 +17,42 @@ git - Greple module for git
 =head1 DESCRIPTION
 
 App::Greple::git is a greple module to handle git output.
+
+=head1 OPTIONS
+
+=over 7
+
+=item B<--color-blame>
+
+Read L<git-blame(1)> output and apply unique color for each
+commit ids.
+
+Set F<$HOME/.gitconfig> like this:
+
+    [pager]
+	blame = greple -Mgit --color-blame | less -cR
+
+=back
+
+=head1 ENVIRONMENT
+
+=over 7
+
+=item B<LESS>
+
+=item B<LESSANSIENDCHARS>
+
+Since B<greple> produces ANSI Erase Line terminal sequence, it is
+convenient to set B<less> command understand them.
+
+    LESS=-cR
+    LESSANSIENDCHARS=mK
+
+=back
+
+=head1 SEE ALSO
+
+L<App::Greple>
 
 =head1 AUTHOR
 
@@ -36,3 +67,9 @@ it under the same terms as Perl itself.
 
 =cut
 
+__DATA__
+
+option --color-blame \
+	--re '^[0-9a-f^][0-9a-f]{7,39}\b.+' \
+	--uniqcolor --uniqsub 'sub{s/\s.*//r}' \
+	--all --face +E-D

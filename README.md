@@ -1,22 +1,49 @@
 # NAME
 
-App::Greple::git - It's new $module
+git - Greple git module
 
 # SYNOPSIS
 
-    use App::Greple::git;
+    greple -Mgit ...
 
 # DESCRIPTION
 
-App::Greple::git is ...
+App::Greple::git is a greple module to handle git output.
 
-# LICENSE
+# OPTIONS
 
-Copyright (C) Kazumasa Utashiro.
+- **--color-blame**
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+    Read [git-blame(1)](http://man.he.net/man1/git-blame) output and apply unique color for each
+    commit ids.
+
+    Set `$HOME/.gitconfig` like this:
+
+        [pager]
+            blame = greple -Mgit --color-blame | less -cR
+
+# ENVIRONMENT
+
+- **LESS**
+- **LESSANSIENDCHARS**
+
+    Since **greple** produces ANSI Erase Line terminal sequence, it is
+    convenient to set **less** command understand them.
+
+        LESS=-cR
+        LESSANSIENDCHARS=mK
+
+# SEE ALSO
+
+[App::Greple](https://metacpan.org/pod/App%3A%3AGreple)
 
 # AUTHOR
 
-Kazumasa Utashiro <kaz@utashiro.com>
+Kazumasa Utashiro
+
+# LICENSE
+
+Copyright 2021 Kazumasa Utashiro.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
