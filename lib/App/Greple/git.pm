@@ -32,6 +32,12 @@ Set F<$HOME/.gitconfig> like this:
     [pager]
 	blame = greple -Mgit --color-blame | less -cR
 
+=begin html
+
+<p><img width="75%" src="https://raw.githubusercontent.com/kaz-utashiro/greple-git/main/images/git-blame-small.png">
+
+=end html
+
 =back
 
 =head1 ENVIRONMENT

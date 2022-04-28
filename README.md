@@ -22,6 +22,10 @@ App::Greple::git is a greple module to handle git output.
         [pager]
             blame = greple -Mgit --color-blame | less -cR
 
+    <div>
+            <p><img width="75%" src="https://raw.githubusercontent.com/kaz-utashiro/greple-git/main/images/git-blame-small.png">
+    </div>
+
 # ENVIRONMENT
 
 - **LESS**
