@@ -1,3 +1,4 @@
+[![Actions Status](https://github.com/kaz-utashiro/greple-git/workflows/test/badge.svg)](https://github.com/kaz-utashiro/greple-git/actions) [![MetaCPAN Release](https://badge.fury.io/pl/App-Greple-git.svg)](https://metacpan.org/release/App-Greple-git)
 # NAME
 
 git - Greple git module
@@ -37,9 +38,17 @@ App::Greple::git is a greple module to handle git output.
         LESS=-cR
         LESSANSIENDCHARS=mK
 
+# INSTALL
+
+## CPANMINUS
+
+    $ cpanm App::Greple::git
+
 # SEE ALSO
 
 [App::Greple](https://metacpan.org/pod/App%3A%3AGreple)
+
+[App::sdif](https://metacpan.org/pod/App%3A%3Asdif): git diff support
 
 # AUTHOR
 

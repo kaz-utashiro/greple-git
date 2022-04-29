@@ -56,9 +56,17 @@ convenient to set B<less> command understand them.
 
 =back
 
+=head1 INSTALL
+
+=head2 CPANMINUS
+
+    $ cpanm App::Greple::git
+
 =head1 SEE ALSO
 
 L<App::Greple>
+
+L<App::sdif>: git diff support
 
 =head1 AUTHOR
 
