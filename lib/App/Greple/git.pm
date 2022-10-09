@@ -27,7 +27,7 @@ App::Greple::git is a greple module to handle git output.
 =item B<--color-blame-label>
 
 Read L<git-blame(1)> output and apply unique color for each commit
-ids.  Option B<--color-blame> and B<--color-blame-line> colorize whole
+id.  Option B<--color-blame> and B<--color-blame-line> colorize whole
 line, while B<--color-blame-label> does only labels.
 
 Set F<$HOME/.gitconfig> like this:
