@@ -20,7 +20,7 @@ App::Greple::git is a greple module to handle git output.
 
 =head1 OPTIONS
 
-=over 7
+=over 4
 
 =item B<--color-blame-line>, B<--color-blame>
 
@@ -47,11 +47,23 @@ Set F<$HOME/.gitconfig> like this:
 
 =end html
 
+=item B<--color-header-by-author>
+
+Colorize the commit header in a different color based on the author field.
+
+=item B<--color-header-by-field> I<field>
+
+Generic version of log header colorization.  Take a case-insensitive
+field name as a parameter.  B<--color-header-by-author> is defined as
+follows:
+
+    option --color-header-by-author --color-header-by-field Author
+
 =back
 
 =head1 ENVIRONMENT
 
-=over 7
+=over 4
 
 =item B<LESS>
 
@@ -83,7 +95,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2021-2022 Kazumasa Utashiro.
+Copyright 2021-2023 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -100,9 +112,27 @@ define :UNIQSUB: sub{s/\s.*//r}
 option --color-blame --color-blame-line
 
 option --color-blame-line \
-	--all --uniqcolor --uniqsub :UNIQSUB: \
+	--all --need=0 --uniqcolor --uniqsub :UNIQSUB: \
 	--re :LINE: --face +E-D
 
 option --color-blame-label \
-	--all --uniqcolor --uniqsub :UNIQSUB: \
+	--all --need=0 --uniqcolor --uniqsub :UNIQSUB: \
 	--re :LABEL: --face -D
+
+define :COMMIT_HEADER: ^([*| ] )*commit(?s:.*?)(?=^([*| ] )*\n|\z)
+
+option --grep-commit-header --re <COMMIT_HEADER>
+
+option --color-log-line-by-header \
+	--uc --all --need=0 \
+	--inside :COMMIT_HEADER: \
+	--re '^([| ] )*$<shift>:\s*\K.*'
+
+option --color-header-by-field \
+	--all --need=0 \
+	--face +E \
+	--re :COMMIT_HEADER: \
+	--uc --uniqsub 'sub{/($<shift>:.*)/im && $1}' 
+
+option --color-header-by-author \
+	--color-header-by-field Author
