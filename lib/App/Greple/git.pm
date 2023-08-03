@@ -19,9 +19,9 @@ sub git_file_or_die {
     state $git_files //= do {
 	my @files = `git ls-files`;
 	chomp @files;
-	[ map { canon($_) } @files ];
+	+{ map { canon($_) => 1 } @files };
     };
-    any { $_ eq $path } @$git_files or die "SKIP $name";
+    $git_files->{$path} or die "SKIP $name";
 }
 
 1;
