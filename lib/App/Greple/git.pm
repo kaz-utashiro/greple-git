@@ -1,6 +1,6 @@
 package App::Greple::git;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 use v5.14;
 use warnings;
