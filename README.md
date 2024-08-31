@@ -33,6 +33,10 @@ App::Greple::git is a greple module to support git command
             <p><img width="75%" src="https://raw.githubusercontent.com/kaz-utashiro/greple-git/main/images/git-blame-label-small.jpg">
     </div>
 
+- **--color-blame-by-author**
+
+    Read [git-blame(1)](http://man.he.net/man1/git-blame) output and apply unique color for each author.
+
 - **--color-header-by-author**
 
     Colorize the commit header in a different color based on the author field.

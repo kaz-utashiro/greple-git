@@ -69,6 +69,10 @@ Set F<$HOME/.gitconfig> like this:
 
 =end html
 
+=item B<--color-blame-by-author>
+
+Read L<git-blame(1)> output and apply unique color for each author.
+
 =item B<--color-header-by-author>
 
 Colorize the commit header in a different color based on the author field.
@@ -151,7 +155,7 @@ option --color-blame-label \
 	--all --need=0 --uniqcolor --color-by-id \
 	--re :LABEL: --face -D
 
-option --color-blame-user \
+option --color-blame-by-author \
 	--all --need=0 --uniqcolor --color-by-user \
 	--re :LABEL: --face -D
 
