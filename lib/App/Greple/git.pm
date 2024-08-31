@@ -125,7 +125,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2021-2023 Kazumasa Utashiro.
+Copyright 2021-2024 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -137,19 +137,36 @@ __DATA__
 define :ID:      [0-9a-f^][0-9a-f]{7,39}
 define :LINE:    ^:ID:\b.+
 define :LABEL:   ^:ID:\b.+?\d\)
-define :UNIQSUB: sub{s/\s.*//r}
+
+option --color-by-id   --uniqsub sub{s/\s.*//r}
+option --color-by-user --uniqsub sub{substr($_,11,17)}
 
 option --color-blame --color-blame-line
 
 option --color-blame-line \
-	--all --need=0 --uniqcolor --uniqsub :UNIQSUB: \
+	--all --need=0 --uniqcolor --color-by-id \
 	--re :LINE: --face +E-D
 
 option --color-blame-label \
-	--all --need=0 --uniqcolor --uniqsub :UNIQSUB: \
+	--all --need=0 --uniqcolor --color-by-id \
 	--re :LABEL: --face -D
 
-define :COMMIT_HEADER: ^([*| ] )*commit(?s:.*?)(?=^([*| ] )*\n|\z)
+option --color-blame-user \
+	--all --need=0 --uniqcolor --color-by-user \
+	--re :LABEL: --face -D
+
+define :COMMIT_HEADER: <<EOS
+    (?x)
+    ^([*| ] )*         # --graph
+    commit \s+         # commit
+    [0-9a-f]{7,40}     # hash
+    (\s+ \(.+\) )?     # (HEAD -> main)
+    \n
+    (
+      ([*| ][/\\ ])*
+      (\w.+\n)
+    )+
+EOS
 
 option --grep-commit-header --re <COMMIT_HEADER>
 
