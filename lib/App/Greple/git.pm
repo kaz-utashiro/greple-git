@@ -1,6 +1,6 @@
 package App::Greple::git;
 
-our $VERSION = "0.04";
+our $VERSION = "1.00";
 
 use v5.14;
 use warnings;
@@ -35,6 +35,10 @@ git - Greple git module
 =head1 SYNOPSIS
 
     greple -Mgit ...
+
+=head1 VERSION
+
+Version 1.00
 
 =head1 DESCRIPTION
 
@@ -142,8 +146,8 @@ define :ID:      [0-9a-f^][0-9a-f]{7,39}
 define :LINE:    ^:ID:\b.+
 define :LABEL:   ^:ID:\b.+?\d\)
 
-option --color-by-id   --uniqsub sub{s/\s.*//r}
-option --color-by-user --uniqsub sub{substr($_,11,17)}
+option --color-by-id   --uniqsub 'sub{s/\h.*//r}'
+option --color-by-user --uniqsub 'sub{substr($_,11,17)}'
 
 option --color-blame --color-blame-line
 

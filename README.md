@@ -7,6 +7,10 @@ git - Greple git module
 
     greple -Mgit ...
 
+# VERSION
+
+Version 1.00
+
 # DESCRIPTION
 
 App::Greple::git is a greple module to support git command
